@@ -3,22 +3,20 @@ package com.example.p6problemsolving.ui.view
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -31,96 +29,86 @@ import com.example.p6problemsolving.ui.model.RencanaStudi
 
 @Composable
 fun TampilView(
-    uiState: Mahasiswa,
-    krsStateUi: RencanaStudi,
-    onBackButtonClicked: () -> Unit = {},
-    onResetButtonClicked: () -> Unit = {}
+    mahasiswa: Mahasiswa,
+    krs: RencanaStudi,
+    onBackButtonClicked: () -> Unit,
+    onResetButtonClicked: () -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(id = R.color.primary))
-    ) {
-        // Header Section
+            .background(color = colorResource(id = R.color.primary)),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Spacer(modifier = Modifier.padding(16.dp))
         Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
+            modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = R.drawable.img),
-                contentDescription = "Logo",
-                modifier = Modifier.size(80.dp)
+                painter = painterResource(id = R.drawable.o),
+                contentDescription = "",
+                modifier = Modifier
+                    .clip(shape = CircleShape)
+                    .size(45.dp)
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.padding(start = 16.dp))
             Column {
                 Text(
-                    text = "Universitas Muhammadiyah Yogyakarta",
-                    color = Color.Red,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
+                    text = "Data KRS Mahasiswa",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    color = Color.Yellow
                 )
                 Text(
-                    text = "Unggul dan Islami",
+                    text = "Universitas Muhammadiyah Yogyakarta",
                     color = Color.White,
-                    fontSize = 14.sp
+                    fontWeight = FontWeight.Light
                 )
             }
         }
-        Box(
+        Column (
             modifier = Modifier
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
-                )
                 .fillMaxSize()
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                // Display Mahasiswa Data
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Column {
-                        Text(text = "NIM: ${uiState.nim}")
-                        Text(text = "Nama: ${uiState.nama}")
-                    }
-                    Text(text = uiState.email)
-                }
-                Spacer(modifier = Modifier.height(16.dp))
+                .background(Color.White)
+                .padding(17.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Column{
+                Text(text = "NIM")
+                Text(text = mahasiswa.nim)
+            }
+            Column{
+                Text(text = "Nama")
+                Text(text = mahasiswa.nama)
+            }
+            Column{
+                Text(text = "Email")
+                Text(text = mahasiswa.email)
+            }
+        }
+        Spacer(modifier = Modifier.padding(16.dp))
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        ){
+            Text(text = "Mata Kuliah yang diambil:")
+            Text(text = krs.namaMK)
+            Row{
+                Text(text = "Kelas:")
+                Text(text = krs.kelas)
+            }
+        }
+        Spacer(modifier = Modifier.padding(16.dp))
 
-                // Display Mata Kuliah and Kelas
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 16.dp)
-                ) {
-                    Text(text = "Nama Mata Kuliah : ${krsStateUi.namaMK}")
-                    Text(text = "Kelas: ${krsStateUi.kelas}")
-                }
-
-                Spacer(modifier = Modifier.height(32.dp))
-
-                // Action Buttons
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    Button(onClick = onBackButtonClicked) {
-                        Text(text = "Kembali")
-                    }
-                    Button(onClick = onResetButtonClicked) {
-                        Text(text = "Reset")
-                    }
-                }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ){
+            Button(onClick = {onBackButtonClicked()}) {
+                Text(text = "Kembali")
+            }
+            Button(onClick = {onResetButtonClicked()}) {
+                Text(text = "Reset")
             }
         }
     }

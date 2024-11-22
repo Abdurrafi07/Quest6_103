@@ -28,7 +28,7 @@ fun DynamicSelectTextField(
 
     ExposedDropdownMenuBox(
         expanded = expanded,
-        onExpandedChange = { expanded = expanded },
+        onExpandedChange = { expanded = !expanded },
         modifier = modifier
     ) {
         OutlinedTextField(

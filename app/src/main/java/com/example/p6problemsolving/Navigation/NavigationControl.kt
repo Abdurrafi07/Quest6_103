@@ -64,12 +64,16 @@ fun NavigationControl(modifier: Modifier = Modifier,
                 onBackButtonClicked = {navHost.popBackStack()}
             )
         }
-        composable(route = Halaman.TAMPILDATA.name){
+        composable(route = Halaman.TAMPILDATA.name) {
             TampilView(
-                uiState = uiState,
-                krsStateUi = krsState,
-                onBackButtonClicked = {navHost.popBackStack()},
-                onResetButtonClicked = {navHost.navigate(Halaman.MAIN.name)}
+                mahasiswa = uiState,
+                krs = krsState,
+                onBackButtonClicked = {
+                    navHost.popBackStack()
+                },
+                onResetButtonClicked = {
+                    navHost.navigate(Halaman.MAIN.name)
+                }
             )
         }
     }
