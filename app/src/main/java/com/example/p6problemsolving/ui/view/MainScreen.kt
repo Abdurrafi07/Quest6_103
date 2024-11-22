@@ -20,10 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.p6problemsolving.R
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun MainScreen(
-    //onMulaiButton: () -> Unit,
+    onMulaiButton: () -> Unit,
 ){
     Column(modifier = Modifier
         .fillMaxSize()
@@ -38,7 +38,7 @@ fun MainScreen(
             contentDescription = "", modifier = Modifier.size(150.dp))
 
         Spacer(modifier = Modifier.padding(16.dp))
-        Button(onClick = {/*TODO*/}, modifier = Modifier
+        Button(onClick = {onMulaiButton}, modifier = Modifier
                 .fillMaxWidth()
                 .padding(32.dp)
             ) {
