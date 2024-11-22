@@ -31,7 +31,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigasidengandata.ui.widget.DynamicSelectTextField
 import com.example.p6problemsolving.R
+import com.example.p6problemsolving.data.MataKuliah
 import com.example.p6problemsolving.ui.model.Mahasiswa
 
 //@Preview(showBackground = true)
@@ -105,6 +107,14 @@ fun RencanaStudyView(
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Light)
                     Spacer(modifier = Modifier.padding(8.dp))
+                    DynamicSelectTextField(
+                        selectedValue = choesenDropdown,
+                        options = MataKuliah.options,
+                        label = "Mata Kuliah",
+                        onValueChangeEvent = {
+                            choesenDropdown = it
+                        }
+                    )
                 }
             }
         }
