@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.p6problemsolving.ui.view.FormMhsView
 import com.example.p6problemsolving.ui.view.MainScreen
+import com.example.p6problemsolving.ui.view.RencanaStudyView
 import com.example.p6problemsolving.viewmodel.RencanaStudyViewModel
 import com.example.p6problemsolving.viewmodel.ViewModelMhs
 
@@ -53,6 +54,14 @@ fun NavigationControl(modifier: Modifier = Modifier,
                 }
             )
         }
+        composable(route = Halaman.MATKUL.name){
+            RencanaStudyView(
+                mahasiswa = uiState,
+                onSubmitButtonClicked = {krsViewModel.saveDataKRS(it)},
+                onBackButtonClicked = {navHost.popBackStack()}
+            ) 
+        }
+
     }
 }
 
