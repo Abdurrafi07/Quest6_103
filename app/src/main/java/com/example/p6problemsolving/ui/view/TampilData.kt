@@ -27,10 +27,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.p6problemsolving.R
 import com.example.p6problemsolving.ui.model.Mahasiswa
+import com.example.p6problemsolving.ui.model.RencanaStudi
 
 @Composable
 fun TampilView(
     uiState: Mahasiswa,
+    krsStateUi: RencanaStudi,
     onBackButtonClicked: () -> Unit = {},
     onResetButtonClicked: () -> Unit = {}
 ) {
@@ -54,13 +56,13 @@ fun TampilView(
             Spacer(modifier = Modifier.width(16.dp))
             Column {
                 Text(
-                    text = "HARVARD UNIVERSITY",
+                    text = "Universitas Muhammadiyah Yogyakarta",
                     color = Color.Red,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Muda Mendunia UHUYYYYYY",
+                    text = "Unggul dan Islami",
                     color = Color.White,
                     fontSize = 14.sp
                 )
@@ -101,8 +103,8 @@ fun TampilView(
                         .fillMaxWidth()
                         .padding(vertical = 16.dp)
                 ) {
-                    Text(text = "Nama Mata Kuliah : ${uiState.matakuliah}")
-                    Text(text = "Kelas: ${uiState.kelas}")
+                    Text(text = "Nama Mata Kuliah : ${krsStateUi.namaMK}")
+                    Text(text = "Kelas: ${krsStateUi.kelas}")
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))

@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.p6problemsolving.ui.view.FormMhsView
 import com.example.p6problemsolving.ui.view.MainScreen
 import com.example.p6problemsolving.ui.view.RencanaStudyView
+import com.example.p6problemsolving.ui.view.TampilView
 import com.example.p6problemsolving.viewmodel.RencanaStudyViewModel
 import com.example.p6problemsolving.viewmodel.ViewModelMhs
 
@@ -31,6 +32,7 @@ fun NavigationControl(modifier: Modifier = Modifier,
                       navHost: NavHostController = rememberNavController()
 ){
     val uiState by viewModel.statusUI.collectAsState()
+    val krsState by krsViewModel.krsStateUi.collectAsState()
     NavHost(
         navController = navHost,
         startDestination = Halaman.MAIN.name,
@@ -57,11 +59,19 @@ fun NavigationControl(modifier: Modifier = Modifier,
         composable(route = Halaman.MATKUL.name){
             RencanaStudyView(
                 mahasiswa = uiState,
-                onSubmitButtonClicked = {krsViewModel.saveDataKRS(it)},
+                onSubmitButtonClicked = {krsViewModel.saveDataKRS(it)
+                                        navHost.navigate(Halaman.TAMPILDATA)},
                 onBackButtonClicked = {navHost.popBackStack()}
             )
         }
-
+        composable(route = Halaman.TAMPILDATA.name){
+            TampilView(
+                uiState = uiState,
+                krsStateUi = krsState,
+                onBackButtonClicked = {navHost.popBackStack()},
+                onResetButtonClicked = {navHost.navigate(Halaman.MAIN.name)}
+            )
+        }
     }
 }
 
