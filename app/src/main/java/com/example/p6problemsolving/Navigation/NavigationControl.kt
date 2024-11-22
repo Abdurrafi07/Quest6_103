@@ -59,7 +59,7 @@ fun NavigationControl(modifier: Modifier = Modifier,
                 mahasiswa = uiState,
                 onSubmitButtonClicked = {krsViewModel.saveDataKRS(it)},
                 onBackButtonClicked = {navHost.popBackStack()}
-            ) 
+            )
         }
 
     }
