@@ -1,4 +1,7 @@
 package com.example.p6problemsolving.ui.model
 
-class RencanaStudi {
-}
+data class RencanaStudi (
+    val namaMK: String = "",
+
+    val kelas: String = ""
+)
