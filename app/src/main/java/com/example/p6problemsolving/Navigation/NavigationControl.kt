@@ -18,6 +18,8 @@ import com.example.p6problemsolving.viewmodel.ViewModelMhs
 
 enum class Halaman{
     MAIN,
+    FORMMHS,
+    MATKUL,
     TAMPILDATA
 }
 
@@ -36,9 +38,20 @@ fun NavigationControl(modifier: Modifier = Modifier,
         composable(route = Halaman.MAIN.name){
             MainScreen(onMulaiButton = {
                 navHost.navigate(
-                    Halaman.TAMPILDATA.name
+                    Halaman.FORMMHS.name
                 )
             })
+        }
+        composable(route = Halaman.FORMMHS.name){
+            FormMhsView(
+                onSumbitButtonClicked = {
+                viewModel.saveDataMhs(it)
+                navHost.navigate(Halaman.MATKUL.name)
+            },
+                onBackButtonClicked = {
+                    navHost.popBackStack()
+                }
+            )
         }
     }
 }
